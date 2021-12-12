@@ -1,5 +1,8 @@
+
+// drum classına sahip ögelerin sayısı
 var numberOfDrumButtons = document.querySelectorAll(".drum").length;
 
+// drum ögelerine tıklama ile ses ve animasyon eklenmesi
 for (var i = 0; i < numberOfDrumButtons; i++) {
 
   document.querySelectorAll(".drum")[i].addEventListener("click", function() {
@@ -14,7 +17,8 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
 
 }
 
-document.addEventListener("keypress", function(event) {
+// ses ve animasyon için eventListener yaratılması - tüm DOM'a eklenir
+document.addEventListener("keydown", function(event) {
 
   makeSound(event.key);
 
@@ -22,12 +26,12 @@ document.addEventListener("keypress", function(event) {
 
 });
 
-
+// ses çalma fonksiyonu
 function makeSound(key) {
 
   switch (key) {
     case "w":
-      var tom1 = new Audio("sounds/tom-1.mp3");
+      var tom1 = new Audio("sounds/tom-1.mp3"); // yeni Audio objesi
       tom1.play();
       break;
 
@@ -67,12 +71,12 @@ function makeSound(key) {
   }
 }
 
-
+// tuşa basınca animasyon fonksiyonu
 function buttonAnimation(currentKey) {
 
-  var activeButton = document.querySelector("." + currentKey);
+  var activeButton = document.querySelector("." + currentKey); // basılı tuş seçimi
 
-  activeButton.classList.add("pressed");
+  activeButton.classList.add("pressed"); // css değişikliği
 
   setTimeout(function() {
     activeButton.classList.remove("pressed");
